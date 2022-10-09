@@ -17,5 +17,4 @@ public class ShipBrain : MonoBehaviour
     {
         OnReset?.Invoke(this, EventArgs.Empty);
     }
-
 }
