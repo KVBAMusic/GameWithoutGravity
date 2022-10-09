@@ -132,8 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 65039662}
-  - component: {fileID: 65039663}
-  - component: {fileID: 65039661}
   - component: {fileID: 65039665}
   - component: {fileID: 65039664}
   m_Layer: 0
@@ -143,20 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &65039661
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65039660}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8547471881871753710, guid: 6beeb6b0fb360444d91d8a4d1dc88782, type: 3}
 --- !u!4 &65039662
 Transform:
   m_ObjectHideFlags: 0
@@ -165,32 +149,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65039660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 22.93, z: 0.25}
+  m_LocalPosition: {x: 0, y: 33.82, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1739641275}
   - {fileID: 330585546}
   - {fileID: 546526217}
+  - {fileID: 1556137382}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &65039663
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65039660}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0.1
-  m_AngularDrag: 0.25
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &65039664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,21 +173,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 0}
-  gravityAmount: 10
+  acceleration: 9000
+  gravityAmount: 15
   turningSpeed: 50
-  thrusters:
-  - name: Forward
-    thruster: {fileID: 1038043218}
-  - name: Front
-    thruster: {fileID: 116046175}
-  - name: Middle
-    thruster: {fileID: 1593306288}
-  - name: Rear
-    thruster: {fileID: 212853527}
-  - name: Right
-    thruster: {fileID: 929570535}
-  - name: Left
-    thruster: {fileID: 593264662}
+  trackMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &65039665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c506a4f4c17944a92b41b90e364bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 65039663}
+  _rigidbody: {fileID: 1556137383}
   _shipMovement: {fileID: 65039664}
 --- !u!1 &116046173
 GameObject:
@@ -277,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9c639b68eb83b4d9e54999db32e5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 65039663}
+  rb: {fileID: 0}
   isActiveByDefault: 1
   requiresRaycast: 1
   affectsTorque: 1
@@ -334,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9c639b68eb83b4d9e54999db32e5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 65039663}
+  rb: {fileID: 0}
   isActiveByDefault: 1
   requiresRaycast: 1
   affectsTorque: 1
@@ -615,7 +575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &546526217
 Transform:
   m_ObjectHideFlags: 0
@@ -681,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9c639b68eb83b4d9e54999db32e5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 65039663}
+  rb: {fileID: 0}
   isActiveByDefault: 1
   requiresRaycast: 1
   affectsTorque: 1
@@ -968,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9c639b68eb83b4d9e54999db32e5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 65039663}
+  rb: {fileID: 0}
   isActiveByDefault: 1
   requiresRaycast: 1
   affectsTorque: 1
@@ -1010,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9c639b68eb83b4d9e54999db32e5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 65039663}
+  rb: {fileID: 0}
   isActiveByDefault: 0
   requiresRaycast: 0
   affectsTorque: 0
@@ -1038,6 +998,68 @@ Transform:
   m_Father: {fileID: 546526217}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &1556137381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556137382}
+  - component: {fileID: 1556137384}
+  - component: {fileID: 1556137383}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556137382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556137381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 65039662}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1556137383
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556137381}
+  serializedVersion: 2
+  m_Mass: 60
+  m_Drag: 0.3
+  m_AngularDrag: 0.15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 2
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &1556137384
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556137381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1593306286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9c639b68eb83b4d9e54999db32e5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 65039663}
+  rb: {fileID: 0}
   isActiveByDefault: 1
   requiresRaycast: 1
   affectsTorque: 0
