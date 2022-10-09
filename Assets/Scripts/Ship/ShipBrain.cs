@@ -8,6 +8,7 @@ public class ShipBrain : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private ShipMovement _shipMovement;
 
+
     public Rigidbody RB => _rigidbody;
     public ShipMovement Movement => _shipMovement;
 
