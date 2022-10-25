@@ -31,20 +31,23 @@ public class ShipMovement : ShipComponent
         axisV = Input.GetAxis("Vertical");
         transform.position = ship.RB.transform.position;
 
-        // adjust rotation according to normal
-        Quaternion newRot = transform.rotation * Quaternion.FromToRotation(transform.up, localUp);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRot, 17 * Time.deltaTime);
+        RaycastHit hit;
+        if (Physics.Raycast(ship.RB.transform.position, -localUp, out hit, 3f, trackMask))
+        {
+            localUp = hit.normal;
+        }
+
+        // rotate 
+        //Quaternion newRot = transform.rotation * Quaternion.FromToRotation(transform.up, localUp);
+        Quaternion newRot = Quaternion.LookRotation(transform.forward, localUp);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRot, 10 * Time.deltaTime);
 
         // turn
         transform.localEulerAngles += new Vector3(0, axisH * turningSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate() {
-        RaycastHit hit;
-        if (Physics.Raycast(ship.RB.transform.position, -localUp, out hit, 3f, trackMask))
-        {
-            localUp = hit.normal;
-        }
+        
 
         //forward force
         ship.RB.AddForce(transform.forward * acceleration * axisV, ForceMode.Force);
@@ -61,4 +64,3 @@ public class ShipMovement : ShipComponent
     }
 
 }
-
